@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hEOf8JH9rGbmxCYtNejxgn4UHM2ciJiIMIYWxjJdGaQFjjf4DRc41Rb/yHuKlOoB96cK+afsFZJUKUzb3IWTDw==",
+  "dgSpecHash": "c16GPRCNY9dagwGofR54jyOxn5o+ew6rmqlRjS3veSiBaLaK+ujlxbAZ11+qB3H1Q2wsxc0UDYlMnyhVTytZfQ==",
   "success": true,
   "projectFilePath": "E:\\Core6\\BulkyBook\\BulkyBookWeb\\BulkyBookWeb.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,12 @@
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.0\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.0.nupkg.sha512",
+    "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",
     "C:\\Users\\sgajbhiye\\.nuget\\packages\\microsoft.build.framework\\17.3.2\\microsoft.build.framework.17.3.2.nupkg.sha512",
