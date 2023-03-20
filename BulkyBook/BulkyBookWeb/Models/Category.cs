@@ -13,7 +13,7 @@ namespace BulkyBookWeb.Models
         [Required]
         public string Name { get; set; }
         public int DisplayOrder { get; set; }
-        public DateTime CraetedDateTime { get; set; }
+        public DateTime CreatedDateTime { get; set; }
 
     }
 }
