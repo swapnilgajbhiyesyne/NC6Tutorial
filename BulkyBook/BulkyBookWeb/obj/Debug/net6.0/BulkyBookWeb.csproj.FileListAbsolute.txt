@@ -566,4 +566,7 @@ E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument
 E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\refs\WindowsBase.dll
 E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
-E:\Core6\BulkyBook\BulkyBookWeb\obj\Debug\net6.0\BulkyBookWeb.MvcApplicationPartsAssemblyInfo.cs
+E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.dll
+E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.dll
+E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.pdb
+E:\Core6\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.pdb
