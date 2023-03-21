@@ -28,6 +28,12 @@ namespace BulkyBookWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
+
+            //Custom Validation
+            if(obj.Name==obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Display Order name cannot be same Nmae");
+            }
             //Server Validation
 
             if (ModelState.IsValid)
