@@ -22,6 +22,8 @@
             <th>Name</th>
             <th>Category</th>
             <th></th>
+                <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -33,6 +35,13 @@
                     <td>
                         <div class="w-75 btn-group" role="group">
                             <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                         </div>
