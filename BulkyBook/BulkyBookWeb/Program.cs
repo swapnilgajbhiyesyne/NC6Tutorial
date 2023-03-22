@@ -11,7 +11,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 ));
 
 //Register Repository
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+//Removed as UOW is implemented
+//builder.Services.AddScoped<ICategoryRepository, CategoryRepository>()
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();

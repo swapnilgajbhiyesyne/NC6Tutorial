@@ -2,6 +2,7 @@
 using BulkyBook.DataAccess.Repository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BulkyBookWeb.Controllers
@@ -10,11 +11,15 @@ namespace BulkyBookWeb.Controllers
     {
         //Replace ApplicatioDbContext with ICateoryRepository
         //private readonly ApplicationDbContext _context;
-        private ICategoryRepository _context;
+        //private ICategoryRepository _context;//REmoved as UOW implemetneted
+        private IUnitOfWork _unitOfWork;
+        //public CategoryController(ICategoryRepository context)
+        //{
+        //    _context = context;
 
-        public CategoryController(ICategoryRepository context)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -22,7 +27,9 @@ namespace BulkyBookWeb.Controllers
             //REplace with Category Repo methods
             //var categoriesList = _context.Categories.ToList();
             //IEnumerable<Category> categories = _context.Categories;
-            IEnumerable<Category> categories=_context.GetAll();
+            //IEnumerable<Category> categories=_context.GetAll(); Removed as UOW
+            IEnumerable<Category> categories = _unitOfWork.Category.GetAll();
+
             return View(categories);
         }
 
@@ -48,8 +55,10 @@ namespace BulkyBookWeb.Controllers
                 //Replace with Category Repos Metod
                 //_context.Categories.Add(obj);
                 // _context.SaveChanges();
-                _context.Add(obj);
-                _context.Save();
+                //_context.Add(obj);
+                //_context.Save();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Created Successfully";
                 return RedirectToAction("Index");
             }
@@ -63,7 +72,9 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
             //var Category = _context.Categories.Find(id);
-            var Category = _context.GetFirstOrDefault(c => c.Id == id);
+            //var Category = _context.GetFirstOrDefault(c => c.Id == id);//Removed becoz UOW
+            var Category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
+
 
             if (Category == null) return NotFound();
             return View(Category);
@@ -76,8 +87,10 @@ namespace BulkyBookWeb.Controllers
             {
                 //_context.Categories.Update(obj);
                 //_context.SaveChanges();
-                _context.Update(obj);
-                _context.Save();
+                //_context.Update(obj);
+                //_context.Save();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Edited Successfully";
                 return RedirectToAction("Index");
             }
@@ -88,7 +101,9 @@ namespace BulkyBookWeb.Controllers
         {
             if (id == null || id == 0) return NotFound();
             //var category = _context.Categories.Find(id);
-            var category = _context.GetFirstOrDefault(c => c.Id == id);
+            //var category = _context.GetFirstOrDefault(c => c.Id == id); //Replace with UOW
+            var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
+
 
             if (category == null) return NotFound();
             return View(category);
@@ -99,12 +114,16 @@ namespace BulkyBookWeb.Controllers
         {
             if (id == null || id == 0) return NotFound();
             // var category = _context.Categories.Find(id);
-            var category = _context.GetFirstOrDefault(c => c.Id == id);
+            //var category = _context.GetFirstOrDefault(c => c.Id == id);//replcae with UOW
+            var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
+
             if (category == null) return NotFound();
             //_context.Categories.Remove(category);
             //_context.SaveChanges();
-            _context.Remove(category);
-            _context.Save();
+            //_context.Remove(category);
+            //_context.Save();
+            _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
