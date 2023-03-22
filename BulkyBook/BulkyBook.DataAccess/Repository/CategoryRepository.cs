@@ -16,10 +16,11 @@ namespace BulkyBook.DataAccess.Repository
             _db = db;
         }
 
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
+        //Removed as UnitOfWork implemented as it is  global method
+        //public void Save()
+        //{
+        //    _db.SaveChanges();
+        //}
 
         public void Update(Category obj)
         {
