@@ -1,6 +1,7 @@
 ﻿using BulkyBook.Data;
 using BulkyBook.DataAccess.Repository;
 using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -34,46 +35,45 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return View(categories);
         }
 
-        
+
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
             if (id == null || id == 0)
             {
                 //create product
-                Product product = new();
-                IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+                ProductVM vm = new ProductVM
+                {
+                    Product = new Product(),
+                    CategoryList = _unitOfWork.Category.GetAll().Select(
+                        u => new SelectListItem
+                        {
+                            Text = u.Name,
+                            Value = u.Id.ToString()
+                        }),
+                    CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+                       u => new SelectListItem
+                       {
+                           Text = u.Name,
+                           Value = u.Id.ToString()
 
-                    u => new SelectListItem
-                    {
-                        Text = u.Name,
-                        Value = u.Id.ToString()
-                    }
-                );
-                IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+                       })
+                };
 
-                    u => new SelectListItem
-                    {
-                        Text = u.Name,
-                        Value = u.Id.ToString()
-                    }
-                ); 
+
                 //return NotFound();
-                return View(product);
+                return View(vm);
 
-            }
+
+            
+        }
 
             else
             {
                 //update product
+                return View();
             }
-            //var Category = _context.Categories.Find(id);
-            //var Category = _context.GetFirstOrDefault(c => c.Id == id);//Removed becoz UOW
-            var Category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
-
-
-            if (Category == null) return NotFound();
-            return View(Category);
+            
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
