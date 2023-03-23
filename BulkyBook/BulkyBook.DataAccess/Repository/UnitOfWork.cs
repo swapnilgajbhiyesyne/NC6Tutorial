@@ -12,12 +12,18 @@ namespace BulkyBook.DataAccess.Repository
         private ApplicationDbContext _db;
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
+
+        public IProdcutRepository Prodcut { get; private set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             CoverType = new CoverTypeRepository(_db);
+            Prodcut = new ProductRepository(_db);
+
         }
+
 
         public void Save()
         {
