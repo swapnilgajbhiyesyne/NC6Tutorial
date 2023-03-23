@@ -26,13 +26,9 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            //REplace with Category Repo methods
-            //var categoriesList = _context.Categories.ToList();
-            //IEnumerable<Category> categories = _context.Categories;
-            //IEnumerable<Category> categories=_context.GetAll(); Removed as UOW
-            IEnumerable<Category> categories = _unitOfWork.Category.GetAll();
+            
 
-            return View(categories);
+            return View();
         }
 
 
@@ -77,20 +73,16 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj)
+        public IActionResult Upsert(ProductVM productVM)
         {
             if (ModelState.IsValid)
             {
-                //_context.Categories.Update(obj);
-                //_context.SaveChanges();
-                //_context.Update(obj);
-                //_context.Save();
-                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Prodcut.Add(productVM.Product);
                 _unitOfWork.Save();
-                TempData["success"] = "Edited Successfully";
+                TempData["success"] = "Product Created Successfully";
                 return RedirectToAction("Index");
             }
-            return View(obj);
+            return View(productVM);
         }
 
         public IActionResult Delete(int id)
