@@ -2,6 +2,7 @@
 using BulkyBook.DataAccess.Repository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -41,6 +42,22 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 //create product
                 Product product = new();
+                IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+
+                    u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }
+                );
+                IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+
+                    u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }
+                ); 
                 //return NotFound();
                 return View(product);
 
