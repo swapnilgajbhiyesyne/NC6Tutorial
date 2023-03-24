@@ -23,11 +23,19 @@ namespace BulkyBook.DataAccess.Repository
         public void Add(T entity)
         {
             dbSet.Add(entity);
+            
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeRelatedEntityes)
         {
             IQueryable<T> query = dbSet;
+            if(includeRelatedEntityes!=null)
+            {
+                foreach(var entityType in includeRelatedEntityes.Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query=query.Include(entityType);
+                }
+            }
             return query.ToList();
         }
 

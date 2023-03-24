@@ -119,7 +119,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 		[HttpGet]
 		public IActionResult GetAll()
 		{
-			var categoriesList = _unitOfWork.Prodcut.GetAll();
+			var categoriesList = _unitOfWork.Prodcut.GetAll("Category");
 			return Json(new { data = categoriesList });
 
 		}
