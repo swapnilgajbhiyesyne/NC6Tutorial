@@ -127,5 +127,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             TempData["success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
-    }
+		
+	}
+
+
 }
