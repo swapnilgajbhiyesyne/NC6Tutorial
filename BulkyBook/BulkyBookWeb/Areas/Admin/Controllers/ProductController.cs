@@ -32,44 +32,73 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         }
 
 
+        //[HttpGet]
+        //public IActionResult Upsert(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        //create product
+        //        ProductVM vm = new ProductVM
+        //        {
+        //            Product = new Product(),
+        //            CategoryList = _unitOfWork.Category.GetAll().Select(
+        //                u => new SelectListItem
+        //                {
+        //                    Text = u.Name,
+        //                    Value = u.Id.ToString()
+        //                }),
+        //            CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+        //               u => new SelectListItem
+        //               {
+        //                   Text = u.Name,
+        //                   Value = u.Id.ToString()
+
+        //               })
+        //        };
+
+
+        //        //return NotFound();
+        //        return View(vm);
+
+
+            
+        //}
+
+        //    else
+        //    {
+        //        //update product
+        //        return View();
+        //    }
+            
+        //}
+
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
-            if (id == null || id == 0)
+            ProductVM vm = new ProductVM
             {
-                //create product
-                ProductVM vm = new ProductVM
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
                 {
-                    Product = new Product(),
-                    CategoryList = _unitOfWork.Category.GetAll().Select(
-                        u => new SelectListItem
-                        {
-                            Text = u.Name,
-                            Value = u.Id.ToString()
-                        }),
-                    CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
-                       u => new SelectListItem
-                       {
-                           Text = u.Name,
-                           Value = u.Id.ToString()
-
-                       })
-                };
-
-
-                //return NotFound();
-                return View(vm);
-
-
-            
-        }
-
-            else
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }),
+                Product = new Product()
+            };
+        if(id==null||id==0)
             {
-                //update product
+                //create
                 return View();
             }
-            
+            else
+            {
+                //update
+                return View(vm);
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
