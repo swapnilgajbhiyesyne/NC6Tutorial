@@ -97,6 +97,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             else
             {
                 //update
+                vm.Product = _unitOfWork.Prodcut.GetFirstOrDefault(c => c.Id == id);
                 return View(vm);
             }
         }
