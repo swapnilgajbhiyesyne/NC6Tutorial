@@ -11,6 +11,11 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+
         //Replace ApplicatioDbContext with ICateoryRepository
         //private readonly ApplicationDbContext _context;
         //private ICategoryRepository _context;//REmoved as UOW implemetneted
@@ -92,7 +97,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         if(id==null||id==0)
             {
                 //create
-                return View();
+                return View(vm);
             }
             else
             {
@@ -107,7 +112,17 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Prodcut.Add(productVM.Product);
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Prodcut.Add(productVM.Product);
+                   // _unitOfWork.Save();
+                }
+                else
+                {
+                    //update
+                    _unitOfWork.Prodcut.Update(productVM.Product);
+                    //_unitOfWork.Save();
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created Successfully";
                 return RedirectToAction("Index");

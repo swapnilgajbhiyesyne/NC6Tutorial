@@ -13,7 +13,7 @@ namespace BulkyBook.DataAccess.Repository
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
-        T GetFirstOrDefault(Expression<Func<T,bool>> filter);
+        T GetFirstOrDefault(Expression<Func<T,bool>> filter,string? includeProperties = null, bool tracked = true);
 
     }
 }
