@@ -130,36 +130,18 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return View(productVM);
         }
 
-        public IActionResult Delete(int id)
-        {
-            if (id == null || id == 0) return NotFound();
-            //var category = _context.Categories.Find(id);
-            //var category = _context.GetFirstOrDefault(c => c.Id == id); //Replace with UOW
-            var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
+        //public IActionResult Delete(int id)
+        //{
+        //    if (id == null || id == 0) return NotFound();
+        //    //var category = _context.Categories.Find(id);
+        //    //var category = _context.GetFirstOrDefault(c => c.Id == id); //Replace with UOW
+        //    var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
 
 
-            if (category == null) return NotFound();
-            return View(category);
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteCategory(int id)
-        {
-            if (id == null || id == 0) return NotFound();
-            // var category = _context.Categories.Find(id);
-            //var category = _context.GetFirstOrDefault(c => c.Id == id);//replcae with UOW
-            var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
-
-            if (category == null) return NotFound();
-            //_context.Categories.Remove(category);
-            //_context.SaveChanges();
-            //_context.Remove(category);
-            //_context.Save();
-            _unitOfWork.Category.Remove(category);
-            _unitOfWork.Save();
-            TempData["success"] = "Deleted Successfully";
-            return RedirectToAction("Index");
-        }
+        //    if (category == null) return NotFound();
+        //    return View(category);
+        //}
+       
 		#region API CALLS
 		[HttpGet]
 		public IActionResult GetAll()
@@ -168,6 +150,25 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 			return Json(new { data = categoriesList });
 
 		}
-		#endregion
-	}
+        [HttpDelete]
+
+        public IActionResult Delete(int? id)
+        {
+
+            var prodcut = _unitOfWork.Prodcut.GetFirstOrDefault(c => c.Id == id);
+
+            if (prodcut == null)
+            {
+                return Json(new { success = false, message = "Error Deleting Product" });
+            }
+            
+                _unitOfWork.Prodcut.Remove(prodcut);
+                _unitOfWork.Save();
+            return Json(new { success = true, message = "Product Deleted Successfuly" });
+
+            //return RedirectToAction("Index");
+
+        }
+        #endregion
+    }
 }
